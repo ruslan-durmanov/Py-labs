@@ -1,5 +1,4 @@
 # TODO: описать базовый класс
-import doctest
 
 
 class Human:
