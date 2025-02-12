@@ -36,7 +36,6 @@ class Physicist:
         """
         if self.hobbies is None:
             return True
-            self.semesters_passed += 1
         else:
             if self.hobbies.casefold() == 'vice'.casefold():
                 raise ValueError('We do not do that here, lil bro.')
