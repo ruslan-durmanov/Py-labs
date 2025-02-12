@@ -1,6 +1,3 @@
-import doctest
-
-
 class Physicist:
     def __init__(self, occupation: str, hobbies: str = None):
         """
