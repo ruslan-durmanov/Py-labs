@@ -1,5 +1,5 @@
 class Book:
-    """ Базовый класс книги. """
+    """Базовый класс книги."""
 
     def __init__(self, name: str, author: str):
         self._name = name
@@ -23,9 +23,7 @@ class Book:
 class PaperBook(Book):
     def __init__(self, name: str, author: str, pages: int):
         super().__init__(name, author)
-        if pages <= 0 or not isinstance(pages, int):
-            raise ValueError
-        self._pages = pages
+        self.pages = pages  # Используем сеттер для валидации
 
     @property
     def pages(self) -> int:
@@ -33,8 +31,8 @@ class PaperBook(Book):
 
     @pages.setter
     def pages(self, value: int) -> None:
-        if value <= 0 or not isinstance(value, int):
-            raise ValueError
+        if not isinstance(value, int) or value <= 0:
+            raise ValueError("Количество страниц должно быть положительным целым числом")
         self._pages = value
 
     def __repr__(self):
@@ -44,9 +42,7 @@ class PaperBook(Book):
 class AudioBook(Book):
     def __init__(self, name: str, author: str, duration: float):
         super().__init__(name, author)
-        if duration <= 0 or not isinstance(duration, (float, int)):
-            raise ValueError
-        self._duration = duration
+        self.duration = duration  # Используем сеттер для валидации
 
     @property
     def duration(self) -> float:
@@ -54,10 +50,9 @@ class AudioBook(Book):
 
     @duration.setter
     def duration(self, value: float) -> None:
-        if value <= 0 or not isinstance(value, (float, int)):
-            raise ValueError
-        self._duration = value
+        if not isinstance(value, (float, int)) or value <= 0:
+            raise ValueError("Длительность должна быть положительным числом")
+        self._duration = float(value)
 
     def __repr__(self):
         return f"{self.__class__.__name__}(name={self.name!r}, author={self.author!r}, duration={self.duration!r})"
-        
